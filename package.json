@@ -1,0 +1,12 @@
+{
+  "name": "hjemmeside",
+  "private": true,
+  "packageManager": "pnpm@9",
+  "workspaces": ["apps/*","packages/*"],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter web dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  }
+}
