@@ -20,14 +20,14 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      # Brug PNPM fra package.json via Corepack (ingen versions-konflikt)
-      - name: Enable Corepack
-        run: corepack enable
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.2      # ← matches your package.json
+          run_install: false
 
       - name: Show versions
         run: |
           node -v
-          corepack -v
           pnpm -v
 
       - name: Install deps
