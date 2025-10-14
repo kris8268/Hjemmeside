@@ -20,23 +20,18 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      # 🔧 Installer pnpm eksplicit (så er den i PATH uanset hvad)
-      - name: Install pnpm 10.18.2
-        run: npm i -g pnpm@10.18.2
-
-      - name: Show versions
-        run: |
-          node -v
-          pnpm -v
+      - name: Show Node version
+        run: node -v
 
       - name: Install deps
-        run: pnpm install --frozen-lockfile
+        run: npx -y pnpm@10.18.2 install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm -F web db:generate
+        run: npx -y pnpm@10.18.2 -F web db:generate
 
       - name: Run migrations
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
-        run: pnpm -F web db:deploy
+        run: npx -y pnpm@10.18.2 -F web db:deploy
+
