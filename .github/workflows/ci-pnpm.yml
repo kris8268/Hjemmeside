@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node uden pnpm-cache (den cache er det, der fejler)
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
 
-      # Sikrer at pnpm findes i PATH
+      # Installer pnpm og læg det på PATH
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
