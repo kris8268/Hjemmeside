@@ -2,13 +2,13 @@
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -17,11 +17,17 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Install pnpm 10.18.2
-        run: npm i -g pnpm@10.18.2
+      # Sikrer at pnpm findes i PATH
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.2
+          run_install: false
 
-      - name: Show versions
+      - name: Show versions and PATH (debug)
         run: |
+          echo "PATH=$PATH"
+          which pnpm || true
           node -v
           pnpm -v
 
