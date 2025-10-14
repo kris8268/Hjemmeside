@@ -3,27 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "db:migrate": "prisma migrate dev --name init",
+    "db:seed": "prisma db seed",
+    "prisma": "prisma",
+    "db:pull": "prisma db pull",
+    "db:generate": "prisma generate",
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "db:setup": "node scripts/db-bootstrap.mjs && prisma migrate dev --name init && prisma generate && node prisma/seed.cjs"
   },
   "dependencies": {
+    "@prisma/client": "^6.17.1",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@eslint/eslintrc": "3.3.1",
+    "@tailwindcss/postcss": "4.1.14",
+    "@types/node": "20.19.21",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
+    "eslint": "9.37.0",
     "eslint-config-next": "15.5.4",
-    "prettier": "^3.6.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "prettier": "3.6.2",
+    "prisma": "^6.17.1",
+    "tailwindcss": "4.1.14",
+    "typescript": "5.9.3"
   }
 }
-, "scripts": { "lint": "next lint", "build": "next build", "dev": "next dev", "test": "echo \"(add tests)\" && exit 0" }
