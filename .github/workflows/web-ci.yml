@@ -20,12 +20,15 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
-      # Brug pnpm-versionen fra package.json via Corepack
+      # Brug PNPM fra package.json via Corepack (ingen versions-konflikt)
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Show pnpm version
-        run: pnpm -v
+      - name: Show versions
+        run: |
+          node -v
+          corepack -v
+          pnpm -v
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
