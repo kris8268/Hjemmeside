@@ -8,9 +8,6 @@ on:
       - '.github/workflows/web-ci.yml'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'apps/web/**'
-      - '.github/workflows/web-ci.yml'
 
 jobs:
   build:
@@ -18,14 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-            run_install: false
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
+
+      # Brug pnpm-versionen fra package.json via Corepack
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Show pnpm version
+        run: pnpm -v
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
