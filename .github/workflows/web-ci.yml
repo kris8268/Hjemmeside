@@ -20,9 +20,10 @@ jobs:
           node-version: 22
           cache: 'pnpm'
 
+      # Installer pnpm – UDEN "version"!
+      # Actionen læser automatisk versionen fra package.json -> "packageManager"
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.18.2      # ← matches your package.json
           run_install: false
 
       - name: Show versions
